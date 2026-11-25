@@ -11,6 +11,7 @@ The rules come from your CV and a few questions. If you'll never do a master's, 
 ## What you need
 
 - **The Claude desktop app** (the Code tab) or **Claude Code** in a terminal. The daily schedule needs the desktop app. In a terminal you run the scan yourself or set it up with `/schedule`.
+- **Git**, installed and on your PATH. Claude uses it to download the plugin from GitHub. On Windows, install it from https://git-scm.com/download/win and keep the default options. GitHub Desktop alone isn't enough, because its git isn't on the PATH. Restart the Claude app after installing.
 - **Your own Claude plan.** Everything runs on your own account.
 - **The Gmail connector**, connected to the inbox that receives your LinkedIn alerts. In the app, go to Settings → Connectors → Gmail.
 - **A LinkedIn account** for the job alerts. Setup gives you the exact list.
@@ -20,14 +21,18 @@ The rules come from your CV and a few questions. If you'll never do a master's, 
 
 ### Option A: from GitHub (recommended)
 
-In the desktop app's Code tab, or in Claude Code, type:
+First install Git (see above). Then use one of these:
 
-```
-/plugin marketplace add nirmanyuatri-cloud/finance-job-scout
-/plugin install finance-job-scout@eur-finance-scout
-```
+- **Desktop app (Code tab):** click **+** next to the prompt box, choose **Add plugins**, add the marketplace `nirmanyuatri-cloud/finance-job-scout`, and install **finance-job-scout** from it. The prompt box takes one line at a time, and typing `/plugin` there opens the plugins panel rather than running the command.
+- **Claude Code in a terminal:** run these two lines one at a time:
+  ```
+  claude plugin marketplace add nirmanyuatri-cloud/finance-job-scout
+  ```
+  ```
+  claude plugin install finance-job-scout@eur-finance-scout
+  ```
 
-In the desktop app you can also click **+** next to the prompt box, choose **Add plugins**, and add the marketplace `nirmanyuatri-cloud/finance-job-scout`.
+Start a new session afterwards. Typing `/finance-job-scout:` should then show `setup` and `scan`.
 
 Updates: `/plugin marketplace update eur-finance-scout`.
 
