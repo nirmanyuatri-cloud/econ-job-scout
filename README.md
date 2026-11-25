@@ -57,13 +57,15 @@ To get updates, run `claude plugin marketplace update eur-econ-scout`.
 
 1. Open a session in the folder that holds your CV.
 2. Run `/econ-job-scout:setup`. Claude will:
-   1. read your CV and ask only what it can't tell from it: your fields and tracks, master's plans, nationality and permit, Dutch level, start dates and locations;
+   1. read your CV and ask only what it can't tell from it: your fields and tracks, master's plans, nationality and permit, Dutch level, start dates, and locations (optionally including Brussels, Frankfurt and Luxembourg);
    2. write `job-scout-profile.json` in your folder;
    3. publish **your own private tracker** and fill its watchlist from your packs;
-   4. give you your LinkedIn alert keywords and the click-by-click steps to create them (daily, Netherlands, by email);
+   4. give you 3–4 combined LinkedIn alert searches and the click-by-click steps to create them (daily, by email);
    5. check your Gmail connector;
    6. create your daily scan at the time you choose.
-3. Wait a day for the first alert emails. Then open the task under **Scheduled** in the sidebar and click **Run now**, or type `/econ-job-scout:scan`.
+3. Wait a day for the first alert emails. Then open the task under **Scheduled** in the sidebar and click **Run now**, and **watch this first run**. Claude asks for permission to use Gmail, the browser and your tracker. Choose **always allow** for each, so later runs can work on their own.
+
+To change anything later, run `/econ-job-scout:setup` again in the same folder and choose **Update my setup**. That keeps your tracker and its history, refreshes the page design, and updates your alerts and schedule.
 
 To preview without publishing or scheduling anything, run `/econ-job-scout:setup --dry-run`.
 
@@ -72,7 +74,9 @@ To preview without publishing or scheduling anything, run `/econ-job-scout:setup
 - New matches appear under **Daily finds** in your tracker. Each one shows the sentence from the posting that proves you're eligible.
 - Change a role's status as you go: To apply, Applied, Interview, Offer.
 - Roles marked **Unverified** (amber) couldn't be read in full, because LinkedIn rate-limits page loads. Check them before applying.
-- To change your rules or fields, edit `job-scout-profile.json`, or ask Claude to ("add the policy pack", "I now speak B1 Dutch"). The scan reads the profile on every run. Then ask Claude to re-seed the tracker's `config/profile` doc, so the header and track list update too.
+- Each scan adds at most 10 roles. Extra good roles are queued for the next days rather than dropped. It also checks 5 watchlist companies in rotation and re-checks a few older postings to mark the closed ones.
+- If the app was closed for a few days, the next scan catches up on the alert emails it missed (up to 14 days).
+- To change your rules or fields, re-run setup and choose **Update my setup**, or edit `job-scout-profile.json` (or ask Claude to). The next scan syncs the tracker's header and track list automatically.
 
 ## Privacy
 
@@ -82,7 +86,8 @@ To preview without publishing or scheduling anything, run `/econ-job-scout:setup
   - Your scheduled task runs on your own computer and your own plan.
 - **Gmail is read-only.** The scan only searches for and reads LinkedIn job-alert emails. It never sends, labels, archives or deletes mail. It stores only clean `linkedin.com/jobs/view/<id>` links, never the emails' tracking links, which carry personal tokens.
 - **No data goes to the kit's authors.** The plugin is just instructions and templates. There's no server, no analytics and no shared database.
-- **LinkedIn is browsed logged out, slowly.** If LinkedIn rate-limits the scan, it stops using LinkedIn for that day and doesn't try to get around the limit.
+- **LinkedIn is browsed logged out, slowly**, with at most 8 page loads per scan. If LinkedIn rate-limits the scan, it stops using LinkedIn for that day and doesn't try to get around the limit.
+- **Your CV stays local.** The scan uses the short CV summary in your profile file. Neither the CV nor the summary is copied into your tracker.
 
 ## What's in the kit
 
@@ -90,7 +95,8 @@ To preview without publishing or scheduling anything, run `/econ-job-scout:setup
 econ-job-scout/
 ├── .claude-plugin/
 │   ├── plugin.json              plugin manifest
-│   └── marketplace.json         lets this repo act as its own marketplace
+│   ├── marketplace.json         lets this repo act as its own marketplace
+│   └── icon.png                 plugin icon
 ├── skills/
 │   ├── setup/SKILL.md           /econ-job-scout:setup (onboarding)
 │   └── scan/SKILL.md            /econ-job-scout:scan (daily scan logic)
@@ -103,6 +109,9 @@ econ-job-scout/
 ├── templates/
 │   ├── tracker.html             the tracker page (personalises itself from your profile)
 │   └── profile.example.json     profile schema with a fictional example
+├── tests/gate-cases.md          sample postings with the expected outcome for two profiles
+├── CHANGELOG.md
+├── LICENSE                      MIT
 └── README.md
 ```
 
@@ -113,5 +122,6 @@ Copy one of the files in `packs/` and keep the same keys: `id`, `label`, `tracks
 ## For maintainers
 
 - Validate before pushing: `claude plugin validate ./ --strict` and `claude plugin validate ./.claude-plugin/plugin.json --strict`.
-- Bump `version` in `plugin.json` whenever you change anything, so users get the update.
+- After editing the gates in `skills/scan/SKILL.md`, run through `tests/gate-cases.md` (see the instructions at the top of that file).
+- Bump `version` in `plugin.json` whenever you change anything, so users get the update, and add a line to `CHANGELOG.md`.
 - Never commit anyone's `job-scout-profile.json`, CV or tracker URL.

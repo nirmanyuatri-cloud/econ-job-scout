@@ -1,6 +1,7 @@
 {
   "name": "Alex Example",
   "cvFile": "Alex_Example_CV.pdf",
+  "cvSummary": "Equity research analyst at a student investment society (3 initiation reports). Part-time bookkeeping assistant, 2 years. Excel modelling, Python (pandas), Bloomberg certified. Courses: Corporate Finance, Investments, Behavioural Economics.",
   "degree": {
     "level": "BSc",
     "programme": "IBEB (International Bachelor in Economics and Business Economics)",
@@ -27,6 +28,7 @@
   },
   "trackList": ["Investment banking / M&A", "Corporate finance", "Private equity", "Asset management", "Strategy consulting", "Economic consulting", "Other"],
   "preferredLocations": ["Rotterdam", "Amsterdam", "The Hague", "Utrecht"],
+  "extraLocations": [],
   "availability": {
     "internshipFrom": "2027-01-01",
     "jobsFrom": "2027-07-01",
@@ -47,6 +49,11 @@
     "junior consultant",
     "sustainable finance",
     "ESG analyst"
+  ],
+  "alerts": [
+    {"query": "\"investment banking intern\" OR \"M&A intern\" OR \"corporate finance intern\" OR \"private equity intern\" OR \"asset management intern\"", "location": "Netherlands"},
+    {"query": "\"finance intern\" OR \"finance internship\" OR \"sustainable finance\" OR \"ESG analyst\"", "location": "Netherlands"},
+    {"query": "\"strategy consulting intern\" OR \"business analyst consulting\" OR \"economic consulting intern\" OR \"consulting intern\" OR \"junior consultant\"", "location": "Netherlands"}
   ],
   "alertSenders": [
     "jobalerts-noreply@linkedin.com",

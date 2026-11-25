@@ -217,7 +217,8 @@ function applyConfig(){
   const labels=Array.isArray(cfg.fieldLabels)&&cfg.fieldLabels.length?cfg.fieldLabels:(cfg.interests&&cfg.interests.fields||[]).map(f=>({finance:"Finance",consulting:"Consulting & strategy",policy:"Policy & public sector",data:"Data & analytics",business:"Business & marketing"}[f]||f));
   $("eyebrow").textContent=[...labels,cfg.interests&&cfg.interests.esgBonus?"Sustainability":null,"Netherlands"].filter(Boolean).join(" · ");
   $("title").textContent=cfg.name?cfg.name.split(" ")[0]+"'s Job Scout":"Job Scout";
-  const parts=["Live postings in the Netherlands"];
+  const extra=Array.isArray(cfg.extraLocations)?cfg.extraLocations.filter(Boolean):[];
+  const parts=["Live postings in the Netherlands"+(extra.length?" and "+extra.join(", "):"")];
   parts[0]+=cfg.noMasters?" where the posting confirms a "+(deg.level==="BSc"||!deg.level?"bachelor's":deg.level)+" is enough, or doesn't ask for a master's.":" that don't rule out your "+(deg.level||"degree")+".";
   const d=lang.dutch||"none", dr=DUTCH_RANK[d]??0;
   parts.push(dr>=5?"Dutch-language roles included.":dr>=3?"Roles needing basic or working Dutch included; fluent-Dutch roles excluded.":"English-language roles that don't require Dutch.");
@@ -241,6 +242,7 @@ opts($("f-trackfilter"),TRACKS,[["all","All tracks"]]);
 function today(){const d=new Date();return new Date(d.getFullYear(),d.getMonth(),d.getDate());}
 function daysTo(iso){if(!iso)return null;const [y,m,d]=iso.split("-").map(Number);if(!y)return null;return Math.round((new Date(y,m-1,d)-today())/864e5);}
 function fmtDate(iso){const [y,m,d]=iso.split("-").map(Number);return new Date(y,m-1,d).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});}
+function safeUrl(u){return typeof u==="string"&&/^https:\/\//i.test(u.trim());} // links come from job postings: only ever link https
 function el(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;}
 function daysEl(r){
   const n=daysTo(r.deadline);
@@ -302,7 +304,7 @@ function rowEl(r){
     const row=el("div","row");
     const main=el("div","main");
     const co=el("div","co");
-    if(r.link){const a=el("a",null,r.company);a.href=r.link;a.target="_blank";a.rel="noopener";co.appendChild(a);}else co.textContent=r.company;
+    if(safeUrl(r.link)){const a=el("a",null,r.company);a.href=r.link;a.target="_blank";a.rel="noopener";co.appendChild(a);}else co.textContent=r.company;
     main.append(co,el("div","ro",r.role));
     const p=el("div","pills");
     const ls=latestScan();
@@ -331,7 +333,7 @@ function renderWatch(){
     c.append(el("div","co",w.company),el("div","fo",w.focus||""));
     c.appendChild(el("div","res",w.lastResult||"Not checked yet"));
     c.appendChild(el("div","chk",w.lastChecked?"Checked "+fmtDate(w.lastChecked):"Not checked yet"));
-    if(w.careersUrl){const a=el("a",null,"Careers page");a.href=w.careersUrl;a.target="_blank";a.rel="noopener";c.appendChild(a);}
+    if(safeUrl(w.careersUrl)){const a=el("a",null,"Careers page");a.href=w.careersUrl;a.target="_blank";a.rel="noopener";c.appendChild(a);}
     W.appendChild(c);
   });
 }
