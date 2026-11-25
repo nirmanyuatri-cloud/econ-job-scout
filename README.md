@@ -23,11 +23,11 @@ The rules come from your CV and a few questions. If you'll never do a master's, 
 In the desktop app's Code tab, or in Claude Code, type:
 
 ```
-/plugin marketplace add <github-owner>/finance-job-scout
+/plugin marketplace add nirmanyuatri-cloud/finance-job-scout
 /plugin install finance-job-scout@eur-finance-scout
 ```
 
-In the desktop app you can also click **+** next to the prompt box, choose **Add plugins**, and add the marketplace `<github-owner>/finance-job-scout`.
+In the desktop app you can also click **+** next to the prompt box, choose **Add plugins**, and add the marketplace `nirmanyuatri-cloud/finance-job-scout`.
 
 Updates: `/plugin marketplace update eur-finance-scout`.
 
