@@ -1,0 +1,35 @@
+{
+  "id": "business",
+  "label": "Business & marketing",
+  "tracks": [
+    {"name": "Marketing & brand", "keywords": ["marketing intern", "brand management intern"]},
+    {"name": "Commercial & sales strategy", "keywords": ["commercial intern", "customer development intern"]},
+    {"name": "Supply chain & operations", "keywords": ["supply chain intern", "operations intern"]},
+    {"name": "Product & e-commerce", "keywords": ["product management intern", "e-commerce intern"]},
+    {"name": "General management traineeships", "keywords": ["management traineeship", "graduate programme"]}
+  ],
+  "groups": [
+    {"label": "Marketing & brand", "tracks": ["Marketing & brand"]},
+    {"label": "Commercial & product", "tracks": ["Commercial & sales strategy", "Product & e-commerce"]},
+    {"label": "Supply chain & operations", "tracks": ["Supply chain & operations"]},
+    {"label": "Management traineeships", "tracks": ["General management traineeships"]}
+  ],
+  "baseKeywords": ["business intern", "business graduate"],
+  "esgKeywords": ["sustainability intern"],
+  "dutchKeywords": ["stage marketing", "traineeship"],
+  "adjacent": ["procurement / purchasing", "category management", "business development", "customer success with an analytical focus", "communications with a commercial focus"],
+  "notRelevant": ["pure field sales / door-to-door", "call-centre roles", "IT/engineering", "legal", "hospitality floor roles", "pure admin"],
+  "watchlist": [
+    {"id": "unilever", "company": "Unilever", "focus": "Marketing, supply chain, future-leaders programme (Rotterdam)", "careersUrl": "https://careers.unilever.com", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=Unilever%20intern&location=Netherlands&geoId=102890719"},
+    {"id": "heineken", "company": "Heineken", "focus": "Marketing, commercial, management traineeship (Amsterdam)", "careersUrl": "https://careers.theheinekencompany.com", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=Heineken%20intern&location=Netherlands&geoId=102890719"},
+    {"id": "philips", "company": "Philips", "focus": "Marketing, product, operations (Amsterdam/Eindhoven)", "careersUrl": "https://www.careers.philips.com", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=Philips%20intern&location=Netherlands&geoId=102890719"},
+    {"id": "ahold-delhaize", "company": "Ahold Delhaize / Albert Heijn", "focus": "Commercial, category management, traineeships (Zaandam)", "careersUrl": "https://www.aholddelhaize.com/careers", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=Albert%20Heijn%20traineeship&location=Netherlands&geoId=102890719"},
+    {"id": "pg-benelux", "company": "Procter & Gamble Benelux", "focus": "Brand management, sales, supply chain (Rotterdam)", "careersUrl": "https://www.pgcareers.com", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=Procter%20%26%20Gamble%20intern&location=Netherlands&geoId=102890719"},
+    {"id": "frieslandcampina", "company": "FrieslandCampina", "focus": "Marketing, supply chain, traineeships (Amersfoort)", "careersUrl": "https://www.frieslandcampina.com/careers", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=FrieslandCampina%20intern&location=Netherlands&geoId=102890719"},
+    {"id": "shell", "company": "Shell", "focus": "Commercial and trading graduate programmes (The Hague)", "careersUrl": "https://www.shell.com/careers", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=Shell%20graduate&location=Netherlands&geoId=102890719"},
+    {"id": "klm", "company": "KLM", "focus": "Commercial, revenue management, operations (Amstelveen)", "careersUrl": "https://careers.klm.com", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=KLM%20intern&location=Netherlands&geoId=102890719"},
+    {"id": "asml", "company": "ASML", "focus": "Supply chain, business and finance roles (Veldhoven)", "careersUrl": "https://www.asml.com/en/careers", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=ASML%20business%20intern&location=Netherlands&geoId=102890719"},
+    {"id": "loreal-nl", "company": "L'Oréal Netherlands", "focus": "Marketing and commercial internships (Amsterdam)", "careersUrl": "https://careers.loreal.com", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=L%27Or%C3%A9al%20intern&location=Netherlands&geoId=102890719"},
+    {"id": "coca-cola-ep", "company": "Coca-Cola Europacific Partners", "focus": "Commercial and supply chain (Rotterdam)", "careersUrl": "https://www.cocacolaep.com/careers", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=Coca-Cola%20Europacific%20Partners%20intern&location=Netherlands&geoId=102890719"}
+  ]
+}

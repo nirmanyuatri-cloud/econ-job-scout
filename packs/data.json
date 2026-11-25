@@ -1,0 +1,35 @@
+{
+  "id": "data",
+  "label": "Data & analytics",
+  "tracks": [
+    {"name": "Business analytics", "keywords": ["business analyst intern", "junior business analyst"]},
+    {"name": "Data analytics & science", "keywords": ["data analyst intern", "junior data analyst"]},
+    {"name": "Pricing & revenue analytics", "keywords": ["pricing analyst intern"]},
+    {"name": "Market & consumer research", "keywords": ["market research intern", "consumer insights intern"]},
+    {"name": "Economic & quantitative analysis", "keywords": ["quantitative analyst intern", "econometrics intern"]}
+  ],
+  "groups": [
+    {"label": "Business & data analytics", "tracks": ["Business analytics", "Data analytics & science"]},
+    {"label": "Pricing & revenue", "tracks": ["Pricing & revenue analytics"]},
+    {"label": "Market & consumer research", "tracks": ["Market & consumer research"]},
+    {"label": "Economic & quant analysis", "tracks": ["Economic & quantitative analysis"]}
+  ],
+  "baseKeywords": ["analyst intern", "analytics graduate"],
+  "esgKeywords": ["sustainability data analyst"],
+  "dutchKeywords": ["stage data analist"],
+  "adjacent": ["BI / reporting roles", "product analytics", "operations analytics", "CRM analytics", "finance data roles"],
+  "notRelevant": ["pure software engineering", "IT support", "sales", "HR", "legal", "hospitality", "pure admin"],
+  "watchlist": [
+    {"id": "booking", "company": "Booking.com", "focus": "Data, business and pricing analytics (Amsterdam)", "careersUrl": "https://jobs.booking.com", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=Booking.com%20analyst&location=Netherlands&geoId=102890719"},
+    {"id": "picnic", "company": "Picnic", "focus": "Business analytics (Amsterdam)", "careersUrl": "https://jobs.picnic.app", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=Picnic%20business%20analyst&location=Netherlands&geoId=102890719"},
+    {"id": "coolblue", "company": "Coolblue", "focus": "Analytics and pricing (Rotterdam)", "careersUrl": "https://www.careersatcoolblue.com", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=Coolblue%20analyst&location=Netherlands&geoId=102890719"},
+    {"id": "bol", "company": "bol", "focus": "Commercial and data analytics (Utrecht)", "careersUrl": "https://careers.bol.com", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=bol%20analyst&location=Netherlands&geoId=102890719"},
+    {"id": "adyen", "company": "Adyen", "focus": "Data and business analytics", "careersUrl": "https://careers.adyen.com", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=Adyen%20analyst&location=Netherlands&geoId=102890719"},
+    {"id": "just-eat-takeaway", "company": "Just Eat Takeaway.com", "focus": "Business and data analytics (Amsterdam)", "careersUrl": "https://careers.justeattakeaway.com", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=Just%20Eat%20Takeaway%20analyst&location=Netherlands&geoId=102890719"},
+    {"id": "tomtom", "company": "TomTom", "focus": "Data and business analytics (Amsterdam)", "careersUrl": "https://www.tomtom.com/careers", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=TomTom%20analyst&location=Netherlands&geoId=102890719"},
+    {"id": "randstad", "company": "Randstad", "focus": "Labour-market and business analytics", "careersUrl": "https://www.randstad.com/careers", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=Randstad%20analyst%20intern&location=Netherlands&geoId=102890719"},
+    {"id": "ing", "company": "ING", "focus": "Analytics and data science", "careersUrl": "https://www.ing.jobs/netherlands", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=ING%20data%20analyst%20intern&location=Netherlands&geoId=102890719"},
+    {"id": "nielseniq", "company": "NielsenIQ", "focus": "Market and consumer research", "careersUrl": "https://nielseniq.com/global/en/careers", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=NielsenIQ&location=Netherlands&geoId=102890719"},
+    {"id": "cbs", "company": "CBS (Statistics Netherlands)", "focus": "Statistics and data science", "careersUrl": "https://www.werkenbijhetcbs.nl", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=CBS%20data&location=Netherlands&geoId=102890719"}
+  ]
+}

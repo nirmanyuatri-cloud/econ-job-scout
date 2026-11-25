@@ -1,0 +1,48 @@
+{
+  "id": "finance",
+  "label": "Finance",
+  "tracks": [
+    {"name": "Investment banking / M&A", "keywords": ["investment banking intern", "M&A intern"]},
+    {"name": "Corporate finance", "keywords": ["corporate finance intern"]},
+    {"name": "Private equity", "keywords": ["private equity intern"]},
+    {"name": "Asset management", "keywords": ["asset management intern"]},
+    {"name": "Trading", "keywords": ["graduate trader", "trading intern"]},
+    {"name": "Risk", "keywords": ["risk analyst intern"]},
+    {"name": "FP&A / Treasury", "keywords": ["FP&A intern", "treasury intern"]},
+    {"name": "Fintech", "keywords": ["fintech finance intern"]},
+    {"name": "Financial consulting", "keywords": ["financial advisory intern"]}
+  ],
+  "groups": [
+    {"label": "Banking & M&A", "tracks": ["Investment banking / M&A", "Financial consulting"]},
+    {"label": "Investing (PE, asset management)", "tracks": ["Private equity", "Asset management"]},
+    {"label": "Trading & risk", "tracks": ["Trading", "Risk"]},
+    {"label": "Corporate (corporate finance, FP&A, treasury, fintech)", "tracks": ["Corporate finance", "FP&A / Treasury", "Fintech"]}
+  ],
+  "baseKeywords": ["finance intern", "finance internship", "finance graduate", "junior financial analyst"],
+  "esgKeywords": ["sustainable finance", "ESG analyst"],
+  "dutchKeywords": ["stage finance", "traineeship finance"],
+  "adjacent": ["accounting / AP-AR / internal control", "controlling", "finance reporting or finance data/BI", "pricing finance", "corporate ESG / sustainability reporting", "impact or credit-risk support roles"],
+  "notRelevant": ["sales", "marketing", "procurement", "HR", "legal", "supply chain", "IT/engineering", "hospitality revenue management", "pure admin"],
+  "watchlist": [
+    {"id": "abn-amro", "company": "ABN AMRO", "focus": "Banking, corporate finance, sustainable finance", "careersUrl": "https://www.abnamro.com/en/careers", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=ABN%20AMRO%20intern&location=Netherlands&geoId=102890719"},
+    {"id": "ing", "company": "ING", "focus": "Banking, risk, sustainable finance", "careersUrl": "https://www.ing.jobs/netherlands", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=ING%20intern&location=Netherlands&geoId=102890719"},
+    {"id": "rabobank", "company": "Rabobank", "focus": "Banking, food & agri finance, ESG", "careersUrl": "https://rabobank.jobs/en", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=Rabobank%20intern&location=Netherlands&geoId=102890719"},
+    {"id": "van-lanschot-kempen", "company": "Van Lanschot Kempen", "focus": "Investment banking, asset & wealth management", "careersUrl": "https://www.vanlanschotkempen.com/en/careers", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=Van%20Lanschot%20Kempen%20intern&location=Netherlands&geoId=102890719"},
+    {"id": "robeco", "company": "Robeco", "focus": "Asset management, sustainable investing (Rotterdam)", "careersUrl": "https://www.robeco.com/en-int/careers", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=Robeco%20intern&location=Netherlands&geoId=102890719"},
+    {"id": "nn-group", "company": "NN Group", "focus": "Insurance, asset management, risk", "careersUrl": "https://www.nn-group.com/careers.htm", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=NN%20Group%20intern&location=Netherlands&geoId=102890719"},
+    {"id": "apg", "company": "APG", "focus": "Pension asset management, responsible investing", "careersUrl": "https://www.apg.nl/en/working-at-apg", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=APG%20intern&location=Netherlands&geoId=102890719"},
+    {"id": "pggm", "company": "PGGM", "focus": "Pension investment, responsible investing", "careersUrl": "https://www.werkenbijpggm.nl", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=PGGM%20intern&location=Netherlands&geoId=102890719"},
+    {"id": "flow-traders", "company": "Flow Traders", "focus": "Trading", "careersUrl": "https://www.flowtraders.com/careers", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=Flow%20Traders&location=Netherlands&geoId=102890719"},
+    {"id": "optiver", "company": "Optiver", "focus": "Trading", "careersUrl": "https://optiver.com/working-at-optiver/career-opportunities", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=Optiver%20graduate&location=Netherlands&geoId=102890719"},
+    {"id": "imc", "company": "IMC Trading", "focus": "Trading", "careersUrl": "https://www.imc.com/eu/careers", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=IMC%20Trading&location=Netherlands&geoId=102890719"},
+    {"id": "deloitte", "company": "Deloitte Netherlands", "focus": "Financial advisory, M&A, valuation", "careersUrl": "https://www.werkenbijdeloitte.nl", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=Deloitte%20financial%20advisory%20intern&location=Netherlands&geoId=102890719"},
+    {"id": "pwc", "company": "PwC Netherlands", "focus": "Deals, valuation, ESG advisory", "careersUrl": "https://www.werkenbijpwc.nl", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=PwC%20deals%20intern&location=Netherlands&geoId=102890719"},
+    {"id": "ey", "company": "EY Netherlands", "focus": "Strategy & transactions, financial consulting", "careersUrl": "https://www.ey.com/nl_nl/careers", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=EY%20transactions%20intern&location=Netherlands&geoId=102890719"},
+    {"id": "kpmg", "company": "KPMG Netherlands", "focus": "Deal advisory, financial risk", "careersUrl": "https://www.werkenbijkpmg.nl", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=KPMG%20deal%20advisory%20intern&location=Netherlands&geoId=102890719"},
+    {"id": "rothschild", "company": "Rothschild & Co", "focus": "M&A advisory (Amsterdam)", "careersUrl": "https://www.rothschildandco.com/en/careers", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=Rothschild%20intern&location=Amsterdam&geoId=102890719"},
+    {"id": "triodos", "company": "Triodos Bank", "focus": "Sustainable banking and impact investing", "careersUrl": "https://www.triodos.com/careers", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=Triodos&location=Netherlands&geoId=102890719"},
+    {"id": "adyen", "company": "Adyen", "focus": "Fintech, finance and treasury", "careersUrl": "https://careers.adyen.com", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=Adyen%20finance%20intern&location=Netherlands&geoId=102890719"},
+    {"id": "de-nederlandsche-bank", "company": "De Nederlandsche Bank", "focus": "Central banking, supervision, risk", "careersUrl": "https://www.werkenbijdnb.nl", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=De%20Nederlandsche%20Bank%20intern&location=Netherlands&geoId=102890719"},
+    {"id": "unilever", "company": "Unilever", "focus": "Corporate finance, FP&A, treasury (Rotterdam)", "careersUrl": "https://careers.unilever.com", "searchUrl": "https://www.linkedin.com/jobs/search?keywords=Unilever%20finance%20intern&location=Netherlands&geoId=102890719"}
+  ]
+}

@@ -1,9 +1,9 @@
 {
-  "name": "finance-job-scout",
-  "displayName": "Finance Job Scout",
-  "version": "0.1.1",
-  "description": "A personal job scout for EUR finance students: reads your LinkedIn job-alert emails (Gmail, read-only), checks each posting against your own eligibility rules, and adds verified Netherlands finance internships and graduate roles to your private tracker every day.",
-  "author": { "name": "EUR finance students" },
+  "name": "econ-job-scout",
+  "displayName": "Econ Job Scout",
+  "version": "0.2.0",
+  "description": "A personal job scout for economics and business students in the Netherlands: pick your fields (finance, consulting, policy, data, business), and it reads your LinkedIn job-alert emails (Gmail, read-only), checks each posting against your own eligibility rules, and adds verified internships and graduate roles to your private tracker every day.",
+  "author": { "name": "EUR economics students" },
   "license": "MIT",
-  "keywords": ["jobs", "internships", "finance", "linkedin", "erasmus", "netherlands", "tracker"]
+  "keywords": ["jobs", "internships", "economics", "finance", "consulting", "policy", "analytics", "linkedin", "erasmus", "netherlands", "tracker"]
 }

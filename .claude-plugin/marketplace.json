@@ -1,12 +1,12 @@
 {
-  "name": "eur-finance-scout",
-  "description": "Finance Job Scout: a personal, private job-search assistant for Erasmus University Rotterdam finance students.",
-  "owner": { "name": "EUR finance students" },
+  "name": "eur-econ-scout",
+  "description": "Econ Job Scout: a personal, private job-search assistant for Erasmus University Rotterdam economics and business students.",
+  "owner": { "name": "EUR economics students" },
   "plugins": [
     {
-      "name": "finance-job-scout",
+      "name": "econ-job-scout",
       "source": "./",
-      "description": "Daily scan of your LinkedIn job alerts against your own eligibility rules, written to your private tracker."
+      "description": "Daily scan of your LinkedIn job alerts against your own eligibility rules and chosen fields, written to your private tracker."
     }
   ]
 }

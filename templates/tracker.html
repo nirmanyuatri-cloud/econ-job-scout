@@ -1,4 +1,4 @@
-<title>Finance Job Scout</title>
+<title>Job Scout</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -107,9 +107,9 @@ button.ghost{border-color:transparent;background:transparent;color:var(--muted);
 <div class="wrap">
   <header>
     <div>
-      <div class="eyebrow" id="eyebrow">Finance · Netherlands</div>
-      <h1 id="title">Finance Job Scout</h1>
-      <p class="sub" id="sub">Live finance postings in the Netherlands, checked against your own eligibility rules. Run /finance-job-scout:setup to personalise this tracker.</p>
+      <div class="eyebrow" id="eyebrow">Netherlands</div>
+      <h1 id="title">Job Scout</h1>
+      <p class="sub" id="sub">Live internships and graduate roles in the Netherlands, checked against your own eligibility rules. Run /econ-job-scout:setup to personalise this tracker.</p>
     </div>
     <div class="ledger" id="ledger">
       <div><b id="k-grad">–</b><span id="k-grad-label">days to graduation</span></div>
@@ -192,20 +192,31 @@ button.ghost{border-color:transparent;background:transparent;color:var(--muted);
 
 <script>
 const STATUSES=["Not checked","To apply","Applied","Interview","Offer","Rejected","Closed"];
-const TRACKS=["Banking","Asset management","Trading","ESG research","Consulting","Fintech","Corporate","Other"];
+let TRACKS=["Other"]; // replaced by the profile's trackList, plus any tracks already used in rows
 const $=id=>document.getElementById(id);
 let scans=[], scansLoaded=false, watch=[], watchLoaded=false;
 let rows=[], allRows=[], db=null, col=null, editing=null, delArmed=false, loaded=false;
-let cfg=null; // config/profile doc written by /finance-job-scout:setup
+let cfg=null; // config/profile doc written by /econ-job-scout:setup
+function refreshTracks(){
+  const base=((cfg&&Array.isArray(cfg.trackList))?cfg.trackList:[]).filter(t=>t!=="Other");
+  allRows.forEach(r=>{if(r.track&&r.track!=="Other"&&!base.includes(r.track))base.push(r.track);});
+  base.push("Other");
+  if(base.join("|")===TRACKS.join("|"))return;
+  TRACKS=base;
+  const ft=$("f-track").value, tf=$("f-trackfilter").value;
+  opts($("f-track"),TRACKS);opts($("f-trackfilter"),TRACKS,[["all","All tracks"]]);
+  if(TRACKS.includes(ft))$("f-track").value=ft;
+  $("f-trackfilter").value=(tf==="all"||TRACKS.includes(tf))?tf:"all";
+}
 
 const DUTCH_RANK={none:0,A1:1,A2:2,B1:3,B2:4,C1:5,C2:6,native:7};
 function monthYear(iso){if(!iso)return "";const [y,m]=iso.split("-").map(Number);if(!y)return "";return new Date(y,(m||1)-1,1).toLocaleDateString("en-GB",{month:"long",year:"numeric"});}
 function applyConfig(){
   if(!cfg)return;
   const deg=cfg.degree||{}, lang=cfg.languages||{}, av=cfg.availability||{}, wr=cfg.workRights||{};
-  const tracks=(cfg.interests&&cfg.interests.tracks)||[];
-  $("eyebrow").textContent=["Finance",cfg.interests&&cfg.interests.esgBonus?"Sustainability":null,"Netherlands"].filter(Boolean).join(" · ");
-  $("title").textContent=cfg.name?cfg.name.split(" ")[0]+"'s Job Scout":"Finance Job Scout";
+  const labels=Array.isArray(cfg.fieldLabels)&&cfg.fieldLabels.length?cfg.fieldLabels:(cfg.interests&&cfg.interests.fields||[]).map(f=>({finance:"Finance",consulting:"Consulting & strategy",policy:"Policy & public sector",data:"Data & analytics",business:"Business & marketing"}[f]||f));
+  $("eyebrow").textContent=[...labels,cfg.interests&&cfg.interests.esgBonus?"Sustainability":null,"Netherlands"].filter(Boolean).join(" · ");
+  $("title").textContent=cfg.name?cfg.name.split(" ")[0]+"'s Job Scout":"Job Scout";
   const parts=["Live postings in the Netherlands"];
   parts[0]+=cfg.noMasters?" where the posting confirms a "+(deg.level==="BSc"||!deg.level?"bachelor's":deg.level)+" is enough, or doesn't ask for a master's.":" that don't rule out your "+(deg.level||"degree")+".";
   const d=lang.dutch||"none", dr=DUTCH_RANK[d]??0;
@@ -220,7 +231,7 @@ function applyConfig(){
   $("k-grad-label").textContent=cfg.graduationDate?"days to "+monthYear(cfg.graduationDate):"days to graduation";
   $("only-bsc-label").textContent=cfg.noMasters?"Bachelor's OK":"Degree confirmed";
 }
-function applyDegreeFilter(){rows=cfg&&cfg.noMasters?allRows.filter(r=>r.degree!=="MSc required"):allRows.slice();}
+function applyDegreeFilter(){rows=cfg&&cfg.noMasters?allRows.filter(r=>r.degree!=="MSc required"):allRows.slice();refreshTracks();}
 
 function opts(sel,list,first){sel.innerHTML="";if(first)first.forEach(([v,t])=>sel.add(new Option(t,v)));list.forEach(v=>sel.add(new Option(v,v)));}
 opts($("f-track"),TRACKS);opts($("f-status"),STATUSES);
@@ -331,7 +342,7 @@ const FIELDS=["company","role","track","location","start","deadline","deadlineNo
 function openForm(r){
   editing=r?r.id:null;delArmed=false;$("btn-del").textContent="Delete";$("form-msg").textContent="";
   $("form-title").textContent=r?"Edit "+r.company:"Add opportunity";
-  FIELDS.forEach(k=>{$("f-"+k).value=r?(r[k]??""):({track:"Banking",degree:"Unverified",status:"Not checked",priority:"Medium"}[k]??"");});
+  FIELDS.forEach(k=>{$("f-"+k).value=r?(r[k]??""):({track:TRACKS[0],degree:"Unverified",status:"Not checked",priority:"Medium"}[k]??"");});
   $("f-esg").checked=!!(r&&r.esg);$("btn-del").hidden=!r;$("form").hidden=false;$("f-company").focus();
 }
 $("btn-add").addEventListener("click",()=>openForm(null));

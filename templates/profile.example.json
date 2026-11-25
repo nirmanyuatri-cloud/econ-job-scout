@@ -21,9 +21,11 @@
     "other": ["Spanish B2"]
   },
   "interests": {
-    "tracks": ["Investment banking / M&A", "Corporate finance", "Private equity", "Asset management", "Trading", "Risk", "FP&A / Treasury", "Fintech", "Financial consulting"],
+    "fields": ["finance", "consulting"],
+    "tracks": ["Investment banking / M&A", "Corporate finance", "Private equity", "Asset management", "Strategy consulting", "Economic consulting"],
     "esgBonus": true
   },
+  "trackList": ["Investment banking / M&A", "Corporate finance", "Private equity", "Asset management", "Strategy consulting", "Economic consulting", "Other"],
   "preferredLocations": ["Rotterdam", "Amsterdam", "The Hague", "Utrecht"],
   "availability": {
     "internshipFrom": "2027-01-01",
@@ -31,18 +33,20 @@
     "partTimeOK": true
   },
   "alertKeywords": [
-    "finance intern",
-    "finance internship",
     "investment banking intern",
     "M&A intern",
     "corporate finance intern",
     "private equity intern",
     "asset management intern",
+    "strategy consulting intern",
+    "business analyst consulting",
+    "economic consulting intern",
+    "finance intern",
+    "finance internship",
+    "consulting intern",
+    "junior consultant",
     "sustainable finance",
-    "ESG analyst",
-    "finance graduate",
-    "junior financial analyst",
-    "graduate trader"
+    "ESG analyst"
   ],
   "alertSenders": [
     "jobalerts-noreply@linkedin.com",
