@@ -1,0 +1,377 @@
+<title>Finance Job Scout</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a header ledger, a deadline strip, then a filterable pipeline of opportunities */
+:root{
+  --bg:#f5f7f5; --surface:#ffffff; --ink:#14201b; --muted:#5b6a63; --line:#dde4e0;
+  --accent:#1f6b4f; --accent-soft:#e2efe8; --accent-ink:#ffffff;
+  --warn:#9a5b00; --warn-soft:#fbefd9; --crit:#b3261e; --crit-soft:#fbe3e1; --ok:#1f6b4f;
+  --chip:#eef2ef;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1513; --surface:#161e1b; --ink:#e6eeea; --muted:#94a59d; --line:#26322d;
+  --accent:#5cc196; --accent-soft:#1b3328; --accent-ink:#0b1410;
+  --warn:#f0b459; --warn-soft:#352813; --crit:#ff8a80; --crit-soft:#3a1c1a; --ok:#5cc196; --chip:#1e2824;
+  color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0f1513; --surface:#161e1b; --ink:#e6eeea; --muted:#94a59d; --line:#26322d;
+  --accent:#5cc196; --accent-soft:#1b3328; --accent-ink:#0b1410;
+  --warn:#f0b459; --warn-soft:#352813; --crit:#ff8a80; --crit-soft:#3a1c1a; --ok:#5cc196; --chip:#1e2824;
+  color-scheme:dark }
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding-block:28px 64px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));
+  display:flex;flex-direction:column;gap:28px}
+h1,h2{font-family:var(--f-display);text-wrap:balance;margin:0}
+h1{font-size:clamp(28px,4.4vw,40px);font-weight:700;letter-spacing:-.01em}
+h2{font-size:18px;font-weight:700}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+header{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end;justify-content:space-between}
+header .sub{color:var(--muted);max-width:56ch;margin:6px 0 0}
+.ledger{display:flex;gap:28px;flex-wrap:wrap}
+.ledger div{display:flex;flex-direction:column}
+.ledger b{font-family:var(--f-mono);font-size:26px;font-weight:500;font-variant-numeric:tabular-nums}
+.ledger span{font-size:12px;color:var(--muted)}
+.notice{padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--muted)}
+.strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.dl{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.dl .co{font-weight:600}
+.dl .ro{color:var(--muted);font-size:13px;overflow-wrap:anywhere}
+.dl .when{margin-top:6px}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.toolbar input[type=search]{flex:1 1 200px;min-width:0}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:8px 10px}
+input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button{font:inherit;cursor:pointer;border-radius:7px;padding:8px 14px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
+button.danger{color:var(--crit);border-color:var(--crit)}
+button.ghost{border-color:transparent;background:transparent;color:var(--muted);padding:6px 8px}
+.toggle{display:inline-flex;gap:6px;align-items:center;font-size:14px;color:var(--muted);cursor:pointer;user-select:none}
+.list{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden}
+.row{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1.1fr) minmax(0,1.3fr) 150px auto;gap:14px;align-items:center;padding:14px 16px;border-top:1px solid var(--line)}
+.row:first-child{border-top:none}
+.row .main{min-width:0}
+.row .co{font-weight:600}
+.row .ro{color:var(--muted);font-size:13.5px;overflow-wrap:anywhere}
+.row .meta{font-size:13px;color:var(--muted);min-width:0}
+.row .next{font-size:13px;margin-top:4px;overflow-wrap:anywhere}
+.row .next::before{content:"Next: ";color:var(--muted)}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.pill{font-size:11.5px;padding:2px 8px;border-radius:999px;background:var(--chip);color:var(--muted);white-space:nowrap}
+.pill.esg{background:var(--accent-soft);color:var(--accent)}
+.pill.bsc{background:var(--accent-soft);color:var(--accent)}
+.pill.msc{background:var(--crit-soft);color:var(--crit)}
+.pill.unv{background:var(--warn-soft);color:var(--warn)}
+.pill.hi{background:var(--ink);color:var(--bg)}
+.days{font-family:var(--f-mono);font-size:13px;font-variant-numeric:tabular-nums}
+.days.crit{color:var(--crit);font-weight:500}
+.days.warn{color:var(--warn)}
+.days.past{color:var(--muted);text-decoration:line-through}
+.row select{width:100%}
+.row a{color:var(--accent)}
+.empty{padding:28px 16px;text-align:center;color:var(--muted)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.grid label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted);min-width:0}
+.grid label.wide{grid-column:1/-1}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.actions .spacer{flex:1}
+.legend{font-size:12.5px;color:var(--muted)}
+.scan-summary{font-size:14px;color:var(--ink);background:var(--accent-soft);border-radius:8px;padding:12px 14px;max-width:80ch}
+.pill.new{background:var(--accent);color:var(--accent-ink)}
+.pill.type{background:var(--chip);color:var(--ink)}
+.row .fit{font-size:13px;color:var(--muted);margin-top:4px;overflow-wrap:anywhere}
+.row .evidence{font-size:12.5px;color:var(--muted);margin-top:4px;font-style:italic;overflow-wrap:anywhere}
+.row .evidence::before{content:"Posting says: ";font-style:normal;color:var(--accent);font-weight:600}
+.watch{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.wcard{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.wcard .co{font-weight:600}
+.wcard .fo{font-size:13px;color:var(--muted)}
+.wcard .res{font-size:13px;overflow-wrap:anywhere;margin-top:4px}
+.wcard .chk{font-size:12px;color:var(--muted);font-family:var(--f-mono)}
+.wcard a{color:var(--accent);font-size:13px}
+@media (max-width:820px){
+  .row{grid-template-columns:1fr 1fr;}
+  .row .main{grid-column:1/-1}
+  .row .edit{justify-self:end}
+}
+@media (prefers-reduced-motion:no-preference){button{transition:background .15s,border-color .15s}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow" id="eyebrow">Finance · Netherlands</div>
+      <h1 id="title">Finance Job Scout</h1>
+      <p class="sub" id="sub">Live finance postings in the Netherlands, checked against your own eligibility rules. Run /finance-job-scout:setup to personalise this tracker.</p>
+    </div>
+    <div class="ledger" id="ledger">
+      <div><b id="k-grad">–</b><span id="k-grad-label">days to graduation</span></div>
+      <div><b id="k-soon">–</b><span>deadlines in next 30 days</span></div>
+      <div><b id="k-applied">–</b><span>applied or interviewing</span></div>
+    </div>
+  </header>
+
+  <div class="notice" id="notice" hidden></div>
+
+  <section aria-labelledby="h-dl" style="display:flex;flex-direction:column;gap:12px">
+    <h2 id="h-dl">Next deadlines</h2>
+    <div class="strip" id="strip"></div>
+  </section>
+
+  <section aria-labelledby="h-new" style="display:flex;flex-direction:column;gap:12px">
+    <div class="actions">
+      <h2 id="h-new">Daily finds</h2>
+      <span class="spacer"></span>
+      <span class="legend mono" id="scan-meta"></span>
+    </div>
+    <div class="scan-summary" id="scan-summary" hidden></div>
+    <div class="list" id="finds"><div class="empty">Loading…</div></div>
+  </section>
+
+  <section aria-labelledby="h-list" style="display:flex;flex-direction:column;gap:12px">
+    <div class="actions">
+      <h2 id="h-list">Pipeline</h2>
+      <span class="spacer"></span>
+      <button class="primary" id="btn-add" type="button">Add opportunity</button>
+    </div>
+
+    <form class="panel" id="form" hidden>
+      <h2 id="form-title">Add opportunity</h2>
+      <div class="grid">
+        <label>Company<input id="f-company" required></label>
+        <label>Role<input id="f-role" required></label>
+        <label>Track<select id="f-track"></select></label>
+        <label>Location<input id="f-location"></label>
+        <label>Start<input id="f-start" placeholder="e.g. Sep 2027"></label>
+        <label>Deadline<input id="f-deadline" type="date"></label>
+        <label>Deadline note<input id="f-deadlineNote" placeholder="e.g. Rolling, opens May"></label>
+        <label>Degree needed<select id="f-degree"><option>BSc OK</option><option>Any degree</option><option>Unverified</option><option>MSc required</option></select></label>
+        <label>Status<select id="f-status"></select></label>
+        <label>Priority<select id="f-priority"><option>High</option><option>Medium</option><option>Low</option></select></label>
+        <label class="wide">Link<input id="f-link" type="url" placeholder="https://"></label>
+        <label class="wide">Next step<input id="f-next"></label>
+        <label class="wide">Notes<textarea id="f-notes" rows="3"></textarea></label>
+        <label class="toggle"><input id="f-esg" type="checkbox"> Sustainability / ESG angle</label>
+      </div>
+      <div class="actions">
+        <button class="primary" type="submit" id="btn-save">Save</button>
+        <button type="button" id="btn-cancel">Cancel</button>
+        <span class="spacer"></span>
+        <button type="button" class="danger" id="btn-del" hidden>Delete</button>
+      </div>
+      <div class="legend" id="form-msg" role="status"></div>
+    </form>
+
+    <div class="toolbar">
+      <input type="search" id="q" placeholder="Search company, role, notes" aria-label="Search">
+      <select id="f-filter" aria-label="Status filter"></select>
+      <select id="f-trackfilter" aria-label="Track filter"></select>
+      <label class="toggle"><input type="checkbox" id="only-bsc"> <span id="only-bsc-label">Degree confirmed</span></label>
+      <label class="toggle"><input type="checkbox" id="only-esg"> ESG angle</label>
+    </div>
+    <div class="list" id="list"><div class="empty">Loading your pipeline…</div></div>
+    <div class="legend">Days left: <span class="days crit">red</span> under 7, <span class="days warn">amber</span> under 21. Rows are sorted by deadline, and rows without one come last.</div>
+  </section>
+
+  <section aria-labelledby="h-watch" style="display:flex;flex-direction:column;gap:12px">
+    <div class="actions">
+      <h2 id="h-watch">Watchlist</h2>
+      <span class="spacer"></span>
+      <span class="legend">Checked by the daily scan for Netherlands openings you qualify for</span>
+    </div>
+    <div class="watch" id="watch"><div class="notice">Loading…</div></div>
+  </section>
+</div>
+
+<script>
+const STATUSES=["Not checked","To apply","Applied","Interview","Offer","Rejected","Closed"];
+const TRACKS=["Banking","Asset management","Trading","ESG research","Consulting","Fintech","Corporate","Other"];
+const $=id=>document.getElementById(id);
+let scans=[], scansLoaded=false, watch=[], watchLoaded=false;
+let rows=[], allRows=[], db=null, col=null, editing=null, delArmed=false, loaded=false;
+let cfg=null; // config/profile doc written by /finance-job-scout:setup
+
+const DUTCH_RANK={none:0,A1:1,A2:2,B1:3,B2:4,C1:5,C2:6,native:7};
+function monthYear(iso){if(!iso)return "";const [y,m]=iso.split("-").map(Number);if(!y)return "";return new Date(y,(m||1)-1,1).toLocaleDateString("en-GB",{month:"long",year:"numeric"});}
+function applyConfig(){
+  if(!cfg)return;
+  const deg=cfg.degree||{}, lang=cfg.languages||{}, av=cfg.availability||{}, wr=cfg.workRights||{};
+  const tracks=(cfg.interests&&cfg.interests.tracks)||[];
+  $("eyebrow").textContent=["Finance",cfg.interests&&cfg.interests.esgBonus?"Sustainability":null,"Netherlands"].filter(Boolean).join(" · ");
+  $("title").textContent=cfg.name?cfg.name.split(" ")[0]+"'s Job Scout":"Finance Job Scout";
+  const parts=["Live postings in the Netherlands"];
+  parts[0]+=cfg.noMasters?" where the posting confirms a "+(deg.level==="BSc"||!deg.level?"bachelor's":deg.level)+" is enough, or doesn't ask for a master's.":" that don't rule out your "+(deg.level||"degree")+".";
+  const d=lang.dutch||"none", dr=DUTCH_RANK[d]??0;
+  parts.push(dr>=5?"Dutch-language roles included.":dr>=3?"Roles needing basic or working Dutch included; fluent-Dutch roles excluded.":"English-language roles that don't require Dutch.");
+  const t=[];
+  if(av.internshipFrom)t.push("internships from "+monthYear(av.internshipFrom)+(av.partTimeOK?" (full- or part-time)":""));
+  if(av.jobsFrom)t.push("graduate jobs from "+monthYear(av.jobsFrom));
+  if(t.length)parts.push(t.join(", ").replace(/^./,c=>c.toUpperCase())+".");
+  if(wr.status&&wr.status!=="EU")parts.push("EU-citizens-only roles excluded"+(wr.zoekjaarAfterGraduation?" (you can use the zoekjaar after graduating).":"."));
+  parts.push("Companies without a matching opening yet are in the Watchlist.");
+  $("sub").textContent=parts.join(" ");
+  $("k-grad-label").textContent=cfg.graduationDate?"days to "+monthYear(cfg.graduationDate):"days to graduation";
+  $("only-bsc-label").textContent=cfg.noMasters?"Bachelor's OK":"Degree confirmed";
+}
+function applyDegreeFilter(){rows=cfg&&cfg.noMasters?allRows.filter(r=>r.degree!=="MSc required"):allRows.slice();}
+
+function opts(sel,list,first){sel.innerHTML="";if(first)first.forEach(([v,t])=>sel.add(new Option(t,v)));list.forEach(v=>sel.add(new Option(v,v)));}
+opts($("f-track"),TRACKS);opts($("f-status"),STATUSES);
+opts($("f-filter"),STATUSES,[["active","Active (hide rejected/closed)"],["all","All statuses"]]);
+opts($("f-trackfilter"),TRACKS,[["all","All tracks"]]);
+
+function today(){const d=new Date();return new Date(d.getFullYear(),d.getMonth(),d.getDate());}
+function daysTo(iso){if(!iso)return null;const [y,m,d]=iso.split("-").map(Number);if(!y)return null;return Math.round((new Date(y,m-1,d)-today())/864e5);}
+function fmtDate(iso){const [y,m,d]=iso.split("-").map(Number);return new Date(y,m-1,d).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});}
+function el(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;}
+function daysEl(r){
+  const n=daysTo(r.deadline);
+  if(n==null)return el("span","days",r.deadlineNote||"No deadline set");
+  const s=el("span","days");
+  if(n<0){s.classList.add("past");s.textContent=fmtDate(r.deadline)+" · passed";}
+  else{s.textContent=fmtDate(r.deadline)+" · "+(n===0?"today":n+"d left");if(n<7)s.classList.add("crit");else if(n<21)s.classList.add("warn");}
+  return s;
+}
+function isOpen(r){return !["Rejected","Closed","Offer"].includes(r.status);}
+function sorted(list){
+  const pr={High:0,Medium:1,Low:2};
+  return [...list].sort((a,b)=>{
+    const da=daysTo(a.deadline),dbb=daysTo(b.deadline);
+    const ka=da==null||da<0?1e6+(da==null?1:0):da, kb=dbb==null||dbb<0?1e6+(dbb==null?1:0):dbb;
+    return ka-kb||(pr[a.priority]??1)-(pr[b.priority]??1)||String(a.company).localeCompare(b.company);
+  });
+}
+
+function renderLedger(){
+  const g=cfg&&cfg.graduationDate?daysTo(cfg.graduationDate):null;
+  $("k-grad").textContent=g==null?"–":Math.max(0,g);
+  $("k-soon").textContent=rows.filter(r=>{const n=daysTo(r.deadline);return n!=null&&n>=0&&n<=30&&isOpen(r)&&r.status!=="Applied"&&r.status!=="Interview";}).length;
+  $("k-applied").textContent=rows.filter(r=>r.status==="Applied"||r.status==="Interview").length;
+}
+function renderStrip(){
+  const s=$("strip");s.innerHTML="";
+  const up=sorted(rows.filter(r=>{const n=daysTo(r.deadline);return n!=null&&n>=0&&isOpen(r);})).slice(0,4);
+  if(!up.length){s.appendChild(el("div","notice",loaded?"No upcoming dated deadlines. Add one, or check the roles still marked 'Not checked'.":"Loading…"));return;}
+  up.forEach(r=>{const c=el("div","dl");c.append(el("div","co",r.company),el("div","ro",r.role));const w=el("div","when");w.appendChild(daysEl(r));c.appendChild(w);s.appendChild(c);});
+}
+function renderList(){
+  const L=$("list");L.innerHTML="";
+  const q=$("q").value.trim().toLowerCase(),f=$("f-filter").value,t=$("f-trackfilter").value;
+  const view=sorted(rows.filter(r=>{
+    if(f==="active"&&["Rejected","Closed"].includes(r.status))return false;
+    if(f!=="active"&&f!=="all"&&r.status!==f)return false;
+    if(t!=="all"&&r.track!==t)return false;
+    if($("only-bsc").checked&&!(r.degree==="BSc OK"||(!(cfg&&cfg.noMasters)&&r.degree==="Any degree")))return false;
+    if($("only-esg").checked&&!r.esg)return false;
+    if(q&&![r.company,r.role,r.notes,r.next,r.location].join(" ").toLowerCase().includes(q))return false;
+    return true;}));
+  if(!view.length){L.appendChild(el("div","empty",loaded?(rows.length?"Nothing matches these filters.":"No opportunities yet. Use Add opportunity to start your pipeline."):"Loading your pipeline…"));return;}
+  view.forEach(r=>L.appendChild(rowEl(r)));
+}
+function latestScan(){return scans[0]||null;}
+function renderFinds(){
+  const F=$("finds");F.innerHTML="";const s=latestScan();
+  const sm=$("scan-summary");
+  if(!s){$("scan-meta").textContent="";sm.hidden=true;
+    F.appendChild(el("div","empty",scansLoaded?"No scans yet. The daily scan checks LinkedIn and other job boards each morning and lists new matching roles here.":"Loading…"));return;}
+  $("scan-meta").textContent="Last scan "+fmtDate(s.date)+(s.checked?" · "+s.checked:"");
+  sm.textContent=s.summary||"";sm.hidden=!s.summary;
+  const list=sorted(rows.filter(r=>r.foundOn===s.date));
+  if(!list.length){F.appendChild(el("div","empty","No new matching roles in the last scan."));return;}
+  list.forEach(r=>F.appendChild(rowEl(r)));
+}
+function rowEl(r){
+    const row=el("div","row");
+    const main=el("div","main");
+    const co=el("div","co");
+    if(r.link){const a=el("a",null,r.company);a.href=r.link;a.target="_blank";a.rel="noopener";co.appendChild(a);}else co.textContent=r.company;
+    main.append(co,el("div","ro",r.role));
+    const p=el("div","pills");
+    const ls=latestScan();
+    if(ls&&r.foundOn===ls.date)p.appendChild(el("span","pill new","New"));
+    if(r.type)p.appendChild(el("span","pill type",r.type));
+    if(r.priority==="High")p.appendChild(el("span","pill hi","High priority"));
+    const degCls={"BSc OK":"bsc","Any degree":"","Unverified":"unv","MSc required":"msc"}[r.degree];
+    p.appendChild(el("span","pill "+(degCls==null?"unv":degCls),r.degree||"Unverified"));
+    if(r.esg)p.appendChild(el("span","pill esg","ESG"));
+    main.appendChild(p);
+    if(r.fit)main.appendChild(el("div","fit",r.fit));
+    if(r.evidence)main.appendChild(el("div","evidence","“"+r.evidence+"”"));
+    if(r.next)main.appendChild(el("div","next",r.next));
+    const meta=el("div","meta");meta.append(el("div",null,r.track||""),el("div",null,[r.location,r.start].filter(Boolean).join(" · ")));
+    const dl=el("div","meta");dl.appendChild(daysEl(r));
+    const st=el("select");st.setAttribute("aria-label","Status for "+r.company);STATUSES.forEach(v=>st.add(new Option(v,v)));st.value=r.status||"Not checked";
+    st.addEventListener("change",()=>save(r.id,{status:st.value},true));
+    const ed=el("button","ghost edit","Edit");ed.type="button";ed.addEventListener("click",()=>openForm(r));
+    row.append(main,meta,dl,st,ed);return row;
+}
+function renderWatch(){
+  const W=$("watch");W.innerHTML="";
+  if(!watch.length){W.appendChild(el("div","notice",watchLoaded?"No companies on the watchlist yet.":"Loading…"));return;}
+  [...watch].sort((a,b)=>String(a.company).localeCompare(b.company)).forEach(w=>{
+    const c=el("div","wcard");
+    c.append(el("div","co",w.company),el("div","fo",w.focus||""));
+    c.appendChild(el("div","res",w.lastResult||"Not checked yet"));
+    c.appendChild(el("div","chk",w.lastChecked?"Checked "+fmtDate(w.lastChecked):"Not checked yet"));
+    if(w.careersUrl){const a=el("a",null,"Careers page");a.href=w.careersUrl;a.target="_blank";a.rel="noopener";c.appendChild(a);}
+    W.appendChild(c);
+  });
+}
+function render(){renderLedger();renderStrip();renderFinds();renderList();renderWatch();}
+["q","f-filter","f-trackfilter","only-bsc","only-esg"].forEach(id=>$(id).addEventListener("input",renderList));
+
+const FIELDS=["company","role","track","location","start","deadline","deadlineNote","degree","status","priority","link","next","notes"];
+function openForm(r){
+  editing=r?r.id:null;delArmed=false;$("btn-del").textContent="Delete";$("form-msg").textContent="";
+  $("form-title").textContent=r?"Edit "+r.company:"Add opportunity";
+  FIELDS.forEach(k=>{$("f-"+k).value=r?(r[k]??""):({track:"Banking",degree:"Unverified",status:"Not checked",priority:"Medium"}[k]??"");});
+  $("f-esg").checked=!!(r&&r.esg);$("btn-del").hidden=!r;$("form").hidden=false;$("f-company").focus();
+}
+$("btn-add").addEventListener("click",()=>openForm(null));
+$("btn-cancel").addEventListener("click",()=>{$("form").hidden=true;});
+$("form").addEventListener("submit",async e=>{
+  e.preventDefault();const data={};FIELDS.forEach(k=>data[k]=$("f-"+k).value.trim());data.esg=$("f-esg").checked;
+  const id=editing||(data.company+"-"+data.role).toLowerCase().replace(/[^a-z0-9]+/g,"-").slice(0,60)+"-"+Date.now().toString(36);
+  if(await save(id,data,false))$("form").hidden=true;
+});
+$("btn-del").addEventListener("click",async()=>{
+  if(!delArmed){delArmed=true;$("btn-del").textContent="Click again to delete";return;}
+  try{await col.doc(editing).delete();$("form").hidden=true;}catch(e){$("form-msg").textContent="Couldn't delete: "+(e.message||e.code);}
+});
+async function save(id,data,merge){
+  if(!col){$("form-msg").textContent="Saving isn't available in this view.";return false;}
+  data.updatedAt=new Date().toISOString();
+  try{merge?await col.doc(id).update(data):await col.doc(id).set(data);return true;}
+  catch(e){const m="Couldn't save: "+(e.code==="invalid_argument"?"you don't have edit access to this tracker.":(e.message||e.code));$("form-msg").textContent=m;showNotice(m);return false;}
+}
+function showNotice(t){const n=$("notice");n.textContent=t;n.hidden=!t;}
+
+render();
+(async()=>{
+  db=window.claude&&window.claude.use?await window.claude.use("db"):null;
+  if(!db){loaded=true;scansLoaded=true;watchLoaded=true;showNotice("Your saved pipeline loads when this page is opened on claude.ai while you're signed in.");render();return;}
+  col=db.collection("applications");
+  const timer=setTimeout(()=>showNotice("Can't reach your saved pipeline yet. It will appear once the connection returns."),10000);
+  col.onSnapshot(snap=>{
+    allRows=snap.docs.map(d=>({id:d.id,...d.data()}));applyDegreeFilter();
+    if(!snap.metadata.fromCache){clearTimeout(timer);loaded=true;showNotice("");}
+    render();
+  },err=>{clearTimeout(timer);loaded=true;showNotice("Your pipeline couldn't load ("+err.code+"). Reopen the page to try again.");render();});
+  db.collection("config").doc("profile").onSnapshot(doc=>{
+    cfg=doc.exists?doc.data():null;applyConfig();applyDegreeFilter();render();
+  },()=>{});
+  db.collection("scans").orderBy("date","desc").limit(7).onSnapshot(snap=>{
+    scans=snap.docs.map(d=>({id:d.id,...d.data()}));if(!snap.metadata.fromCache)scansLoaded=true;render();
+  },()=>{scansLoaded=true;render();});
+  db.collection("watchlist").onSnapshot(snap=>{
+    watch=snap.docs.map(d=>({id:d.id,...d.data()}));if(!snap.metadata.fromCache)watchLoaded=true;renderWatch();
+  },()=>{watchLoaded=true;renderWatch();});
+})();
+</script>

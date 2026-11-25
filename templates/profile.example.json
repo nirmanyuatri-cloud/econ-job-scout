@@ -1,0 +1,54 @@
+{
+  "name": "Alex Example",
+  "cvFile": "Alex_Example_CV.pdf",
+  "degree": {
+    "level": "BSc",
+    "programme": "IBEB (International Bachelor in Economics and Business Economics)",
+    "university": "Erasmus University Rotterdam",
+    "major": "Finance",
+    "gpa": "7.9/10"
+  },
+  "graduationDate": "2027-06-30",
+  "enrolmentMayRunTo": "2027-08-31",
+  "noMasters": true,
+  "workRights": {
+    "status": "non-EU student permit",
+    "zoekjaarAfterGraduation": true
+  },
+  "languages": {
+    "english": "C2",
+    "dutch": "A2",
+    "other": ["Spanish B2"]
+  },
+  "interests": {
+    "tracks": ["Investment banking / M&A", "Corporate finance", "Private equity", "Asset management", "Trading", "Risk", "FP&A / Treasury", "Fintech", "Financial consulting"],
+    "esgBonus": true
+  },
+  "preferredLocations": ["Rotterdam", "Amsterdam", "The Hague", "Utrecht"],
+  "availability": {
+    "internshipFrom": "2027-01-01",
+    "jobsFrom": "2027-07-01",
+    "partTimeOK": true
+  },
+  "alertKeywords": [
+    "finance intern",
+    "finance internship",
+    "investment banking intern",
+    "M&A intern",
+    "corporate finance intern",
+    "private equity intern",
+    "asset management intern",
+    "sustainable finance",
+    "ESG analyst",
+    "finance graduate",
+    "junior financial analyst",
+    "graduate trader"
+  ],
+  "alertSenders": [
+    "jobalerts-noreply@linkedin.com",
+    "jobs-noreply@linkedin.com",
+    "jobs-listings@linkedin.com"
+  ],
+  "trackerUrl": "",
+  "scanTime": "08:00"
+}

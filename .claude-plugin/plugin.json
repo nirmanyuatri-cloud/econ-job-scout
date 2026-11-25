@@ -1,0 +1,9 @@
+{
+  "name": "finance-job-scout",
+  "displayName": "Finance Job Scout",
+  "version": "0.1.0",
+  "description": "A personal job scout for EUR finance students: reads your LinkedIn job-alert emails (Gmail, read-only), checks each posting against your own eligibility rules, and adds verified Netherlands finance internships and graduate roles to your private tracker every day.",
+  "author": { "name": "EUR finance students" },
+  "license": "MIT",
+  "keywords": ["jobs", "internships", "finance", "linkedin", "erasmus", "netherlands", "tracker"]
+}
